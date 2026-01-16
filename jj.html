@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Keyboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <textarea id="display" rows="3" cols="50" readonly></textarea>
+        <div class="keyboard">
+            <!-- Qator 1: Choseong (undoshlar) -->
+            <div class="row">
+                <button class="key">ㅂ</button>
+                <button class="key">ㅈ</button>
+                <button class="key">ㄷ</button>
+                <button class="key">ㄱ</button>
+                <button class="key">ㅅ</button>
+                <button class="key">ㅛ</button>
+                <button class="key">ㅕ</button>
+                <button class="key">ㅑ</button>
+                <button class="key">ㅐ</button>
+                <button class="key">ㅔ</button>
+            </div>
+            <!-- Qator 2: Jungseong (unlilar) -->
+            <div class="row">
+                <button class="key">ㅁ</button>
+                <button class="key">ㄴ</button>
+                <button class="key">ㅇ</button>
+                <button class="key">ㄹ</button>
+                <button class="key">ㅎ</button>
+                <button class="key">ㅗ</button>
+                <button class="key">ㅓ</button>
+                <button class="key">ㅏ</button>
+                <button class="key">ㅣ</button>
+            </div>
+            <!-- Qator 3: Shift, Space va Backspace -->
+            <div class="row">
+                <button class="key" id="shift">Shift</button>
+                <button class="key">ㅋ</button>
+                <button class="key">ㅌ</button>
+                <button class="key">ㅊ</button>
+                <button class="key">ㅍ</button>
+                <button class="key">ㅠ</button>
+                <button class="key">ㅜ</button>
+                <button class="key">ㅡ</button>
+                <button class="key" id="space">Space</button>
+                <button class="key" id="backspace">Backspace</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // script.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    const display = document.getElementById('display');
+    const keys = document.querySelectorAll('.key');
+    const shiftKey = document.getElementById('shift');
+    const spaceKey = document.getElementById('space');
+    const backspaceKey = document.getElementById('backspace');
+
+    let isShiftActive = false;
+
+    const shiftedKeys = {
+        'ㅂ': 'ㅃ',
+        'ㅈ': 'ㅉ',
+        'ㄷ': 'ㄸ',
+        'ㄱ': 'ㄲ',
+        'ㅅ': 'ㅆ',
+    };
+
+    keys.forEach(key => {
+        key.addEventListener('click', function () {
+            const keyValue = this.textContent;
+
+            if (keyValue === 'Space') {
+                display.value += ' ';
+            } else if (keyValue === 'Backspace') {
+                display.value = display.value.slice(0, -1);
+            } else if (keyValue === 'Shift') {
+                toggleShift();
+            } else {
+                const finalKeyValue = isShiftActive && shiftedKeys[keyValue] ? shiftedKeys[keyValue] : keyValue;
+                display.value += finalKeyValue;
+                if (isShiftActive) toggleShift();  // Shift tugmasi bir marta bosiladi
+            }
+        });
+    });
+
+    function toggleShift() {
+        isShiftActive = !isShiftActive;
+        shiftKey.classList.toggle('active', isShiftActive);
+    }
+});
+
+    </script>
+    
+</body>
+</html>
