@@ -1,5 +1,5 @@
 const main = document.getElementById("main");
-const scroll_list = document.getElementById("scroll_list");
+//const scroll_list = document.getElementById("scroll_list");
 const show_list = document.getElementById("show_list");
 const cards_box = document.getElementById("cards_box");
 const mn_right = document.getElementById("mn_right");
@@ -20,6 +20,14 @@ const CUR = {
     a: 50,
     b: 30
 }
+// lugar tanlash ga
+
+const selected = [];
+const booksList = document.getElementById("booksList");
+const selectedTopics = document.getElementById("selectedTopics");
+//
+let AllSelectedWords = [];
+//
 let inp = {
     lang: {
         krtouz: document.getElementById("box_inp_kr-to-uz"),
@@ -79,28 +87,140 @@ if (/mobile/i.test(userAgent)) {
 
 
 TextToSpeech("", "uz");
-DateReset();
-ResetSettings();
+document.addEventListener("DOMContentLoaded", () => {
+    DateReset();
+    ResetSettings();
+});
+
 
 //settings.type = 'kros';
-Menu(2);
+Menu(3);
 // fff
+
+
+
+
+/* =====================
+   KITOBLARNI CHIQARISH
+===================== */
+data.forEach((b, i) => {
+    const book = document.createElement("div");
+    book.className = "book-card";
+
+    book.innerHTML = `
+        <div class="book-title" onclick="toggleTopics(${i})">
+            📘 ${b.book}
+        </div>
+        <div class="topics-list" id="topics-${i}">
+            ${b.topics.map(t =>
+                `<div class="topic-btn"
+                    onclick="selectTopic('${b.book}','${t.mavzu}', this)">
+                    ${t.mavzu}
+                </div>`
+            ).join("")}
+        </div>
+    `;
+    booksList.appendChild(book);
+});
+
+function toggleTopics(i) {
+    const el = document.getElementById("topics-" + i);
+    el.style.display = el.style.display === "flex" ? "none" : "flex";
+}
+
+/* =====================
+   MAVZU TANLASH
+===================== */
+function selectTopic(bookName, topicName, btn) {
+    const key = bookName + " - " + topicName;
+
+    if (selected.includes(key)) {
+        // ❌ olib tashlash
+        selected.splice(selected.indexOf(key), 1);
+        btn.classList.remove("active");
+    } else {
+        // ✅ qo‘shish
+        selected.push(key);
+        btn.classList.add("active");
+    }
+
+    syncSelectedWords();
+    renderSelected();
+}
+function syncSelectedWords() {
+    AllSelectedWords = [];
+
+    selected.forEach(sel => {
+        const [bookName, topicName] = sel.split(" - ");
+
+        const book = data.find(b => b.book === bookName);
+        if (!book) return;
+
+        const topic = book.topics.find(t => t.mavzu === topicName);
+        if (!topic) return;
+
+        // 🔥 lug‘atlarni qo‘shish
+        AllSelectedWords.push(...topic.toplam);
+    });
+
+    console.log("AllSelectedWords:", AllSelectedWords);
+}
+
+
+/* =====================
+   TANLANGANLARNI CHIQARISH
+===================== */
+function renderSelected() {
+    selectedTopics.innerHTML = "";
+
+    if (selected.length === 0) {
+        selectedTopics.innerHTML =
+            `<p class="empty-text">Hozircha hech narsa tanlanmagan</p>`;
+        return;
+    }
+
+    selected.forEach((s, i) => {
+        const div = document.createElement("div");
+        div.className = "selected-item";
+        div.innerHTML = `
+            ${s}
+            <span class="remove-btn" onclick="removeSelected(${i})">✖</span>
+        `;
+        selectedTopics.appendChild(div);
+    });
+}
+
+function removeSelected(i) {
+    selected.splice(i, 1);
+    syncSelectedWords();
+    renderSelected();
+}
+
+/* =====================
+   TESTNI BOSHLASH
+===================== */
+function startTest() {
+    Menu(2);
+    StartTest();
+}
+
 
 function DateReset() {
     inp.date = [];
-    scroll_list.innerHTML = "";
+
+   // const scroll_list = document.getElementById("scroll_list");
+   // if (!scroll_list) {
+   //     console.error("scroll_list topilmadi");
+   //     return;
+   // }
+//
+   // scroll_list.innerHTML = "";
+
     for (let i = 0; i <= daysBetween(DayFromStart); i++) {
-        scroll_list.innerHTML += `
-<div class="sl_days">
-    <p class="sld_p" onclick="ShowWords(${i});">${(50-i)}</p>
-    <input id="days_ckb_${i}" onclick="CheckboxClick(${i});" class="sld_inp" type="checkbox">
-</div>`;
-    }
-    for (let i = 0; i <= daysBetween(DayFromStart); i++) {
-        settings.day.push(false);
-        inp.date.push(document.getElementById(`days_ckb_${i}`));
+        // davom etadi
     }
 }
+
 
 function ShowWords(date_) {
     mn_right.style = `transform: translateY(-100%);`;
@@ -129,24 +249,35 @@ function CheckboxClick(nth_) {
 }
 
 function ResetSettings() {
-    if (settings.lang === "krtouz") {
+
+    if (inp?.lang?.krtouz && settings.lang === "krtouz") {
         inp.lang.krtouz.click();
-    } else if (settings.lang === "uztokr") {
+    } else if (inp?.lang?.uztokr && settings.lang === "uztokr") {
         inp.lang.uztokr.click();
-    }    
-    if (settings.type === "option") {
+    }
+
+    if (inp?.type?.option && settings.type === "option") {
         inp.type.option.click();
-    } else if (settings.type === "card") {
+    } else if (inp?.type?.card && settings.type === "card") {
         inp.type.card.click();
     }
-    if (settings.way === "text") {
+
+    if (inp?.way?.text && settings.way === "text") {
         inp.way.text.click();
-    } else if (settings.way === "sound") {
+    } else if (inp?.way?.sound && settings.way === "sound") {
         inp.way.sound.click();
     }
-    inp.sound.checked = settings.sound;
-    inp.date[0].click();
+
+    if (inp?.sound) {
+        inp.sound.checked = !!settings.sound;
+    }
+
+    // ❗ ENG MUHIMI
+    if (Array.isArray(inp?.date) && inp.date.length > 0) {
+        inp.date[0].click();
+    }
 }
+
 
 inp.way.text.click();// fff
 
@@ -173,6 +304,10 @@ function DaysShortSort(num_) {
 }
 
 function StartTest() {
+if (AllSelectedWords.length < 1) {
+    alert("Hali lug`atlar tanlanmagan! ");
+    Menu(3)
+} else {
     if (settings.way === "sound") {
         document.querySelector(".txt_kr").style = "color: transparent;";
         document.querySelector(".option_question").style = "color: transparent;";
@@ -182,7 +317,8 @@ function StartTest() {
    
     }
     // for date sort
-    arr_for_test = [];
+    arr_for_test = AllSelectedWords;
+    /*arr_for_test = [];
     for (let i = 0; i <= daysBetween(DayFromStart); i++) {
         if (settings.day[i]) {
             for (let j = 1; j <= 20; j++) {
@@ -191,7 +327,8 @@ function StartTest() {
                 }
             }
         }
-    }
+    }*/
+
     // for type test    
     if (settings.type === "option") {
         document.getElementById("mn_center").style = `transform: translateY(calc(1vh*100*(0)));`;
@@ -203,6 +340,7 @@ function StartTest() {
         document.getElementById("mn_center").style = `transform: translateY(calc(1vh*100*(-2)));`;
         StartKrosTest();
     }
+}
 }
 
 function StartKrosTest() {

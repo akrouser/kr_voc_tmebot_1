@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="go();">ok</button>
+    <script src="voc.js"></script>
+    <script>
+
+function go() {
+        const topics = buildTopics(Top_1000_Voc);
+
+        let result = (JSON.stringify(buildTopics(Top_1000_Voc), null, 2));
+
+        console.log(result)
+        navigator.clipboard.writeText(result)
+        .then(() => {
+            console.log("📋 Clipboardga nusxalandi");
+        })
+        .catch(err => {
+            console.error("Xatolik:", err);
+        });
+    }
+
+        function buildTopics(words, step = 20) {
+    const topics = [];
+
+    for (let i = 0; i < words.length; i += step) {
+        const start = i + 1;
+        const end = Math.min(i + step, words.length);
+
+        topics.push({
+            mavzu: `${start}-${end}`,
+            toplam: words.slice(i, i + step).map(w => ({
+                korean: w.korean,
+                uzbek: w.uzbek
+            }))
+        });
+    }
+
+    return topics;
+}
+
+    </script>
+</body>
+</html>

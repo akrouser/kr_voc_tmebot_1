@@ -9,6 +9,8 @@
 <body>
     <div id="screen">
         <div id="main">
+            
+            <!-- Sozlamalar bolimi -->
             <div id="mn_left">
                 <div class="box">
                     <p class="box_title">Kr-To-Uz / Uz-To-Kr</p>
@@ -31,10 +33,11 @@
                         <input onclick="(this.checked)?(settings.type = `card`):(true)" id="box_inp_card" class="box_inp" type="radio" name="inp_type">
                         <p class="box_p">Card</p>    
                     </div>    
+                    <!--
                     <div class="box_opt">
                         <input onclick="(this.checked)?(settings.type = `kros`):(true)" id="box_inp_kros" class="box_inp" type="radio" name="inp_type">
                         <p class="box_p">Krosword</p>    
-                    </div>
+                    </div>-->
                 </div>
                 <div class="box">
                     <div class="box_title">Test Option</div>
@@ -55,6 +58,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Test boladigan bolim-->
             <div id="mn_center">
                 <div class="panel_for_test">
                     <div class="option_box">
@@ -91,7 +96,29 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Lugatlar toplamini tanlash bolimi -->
             <div id="mn_right">
+                <div class="select-panel">
+
+                    <h2 class="panel-title">📚 Kitoblarni tanlang</h2>
+
+                    <div id="booksList" class="books-list">
+                        <!-- JS orqali kitoblar chiqadi -->
+                    </div>
+
+                    <h2 class="panel-title">📖 Tanlangan mavzular</h2>
+
+                    <div id="selectedTopics" class="selected-topics">
+                        <p class="empty-text">Hozircha hech narsa tanlanmagan</p>
+                    </div>
+
+                    <button class="start-test-btn" onclick="startTest()">
+                        🚀 Testni boshlash
+                    </button>
+
+                </div>
+                <!--
                 <div class="mnR_P">
                     <div class="scroll_list" id="scroll_list">
                         <div class="sl_days">
@@ -112,8 +139,9 @@
                     <div class="sl_btm">
                         <button class="slb_btn" onclick="mn_right.style = `transform: translateY(0%);`;">BACK</button>
                     </div>
-                </div>
+                </div>-->
             </div>
+
         </div>
         <div id="bottom">
             <div onclick="Menu(1);" id="btm_left">Type</div>
@@ -121,7 +149,8 @@
             <div onclick="Menu(3);" id="btm_right">Date</div>
         </div>
     </div>
-    <script src="voc.js"></script>
-    <script src="script.js"></script>
+    <script src="voc_data.js"></script>
+    <script src="voc.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

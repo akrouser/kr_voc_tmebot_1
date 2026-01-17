@@ -431,3 +431,93 @@ body {
 }
 
 
+
+
+.select-panel {
+    width: calc(1vw*80);
+    background: whitesmoke;
+    border-radius: calc(1vw*4);
+    border: 2px solid black;
+    padding: calc(1vh*2);
+    margin-top: calc(1vh*2);
+    max-height: 80vh;      /* 🔥 ekran balandligining 70% */
+    overflow-y: auto;     /* 🔥 vertikal scroll */
+    overflow-x: hidden;
+}
+
+.panel-title {
+    margin: calc(1vh*1) 0;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.books-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(1vh*1);
+}
+
+.book-card {
+    background: #d0d0d0;
+    border-radius: calc(1vw*2);
+    padding: calc(1vh);
+    border: 1px solid black;
+}
+
+.book-title {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.topics-list {
+    margin-top: calc(1vh);
+    display: none;
+    flex-wrap: wrap;
+    gap: calc(1vw*1);
+}
+
+.topic-btn {
+    padding: calc(0.5vh) calc(1vw);
+    background: lightgray;
+    border-radius: calc(1vw);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.topic-btn.active {
+    background: #4caf50;
+    color: white;
+}
+
+.selected-topics {
+    min-height: calc(1vh*8);
+    background: #eee;
+    border-radius: calc(1vw*2);
+    padding: calc(1vh);
+}
+
+.selected-item {
+    display: flex;
+    justify-content: space-between;
+    background: gray;
+    padding: calc(0.5vh) calc(1vw);
+    border-radius: calc(1vw);
+    margin-bottom: calc(0.5vh);
+    color: white;
+}
+
+.remove-btn {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+}
+
+.start-test-btn {
+    margin-top: calc(1vh*2);
+    width: 100%;
+    height: calc(1vh*6);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: calc(1vw*2);
+    border: 2px solid black;
+}

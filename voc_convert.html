@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea class="text_inp" name="" id="text_inp"></textarea>
+    <button onclick="copy_();">COPY</button>
+    <script>
+        let text_ = ``;
+
+        function copy_() {
+    text_ = document.getElementById("text_inp").value;
+const resultText = convertTextToDictText(text_);
+navigator.clipboard.writeText(resultText)
+        .then(() => {
+            console.log("📋 Clipboardga nusxalandi");
+        })
+        .catch(err => {
+            console.error("Xatolik:", err);
+        });
+            }
+
+ function convertTextToDictText(text) {
+    return text
+        .trim()
+        .split("\n")
+        .map(line => {
+            const [korean, ...rest] = line.trim().split(" ");
+            const uzbek = rest.join(" ");
+            return `{ korean: "${korean}", uzbek: "${uzbek}" },`;
+        })
+        .join("\n");
+}
+
+
+
+    </script>
+</body>
+</html>
