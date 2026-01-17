@@ -501,9 +501,23 @@ function TextToSpeech(text_, lang_) {
         speechSynthesis.speak(utterance);
     } else {
         // If speech synthesis is not supported, alert the user
-        alert('Sorry, your browser does not support speech synthesis.');
+        //alert('Sorry, your browser does not support speech synthesis.');
+        playGoogleTTS(text_, "ko");
     }
 }
+
+function playGoogleTTS(text, lang = "ko") {
+    const url =
+        "https://translate.google.com/translate_tts" +
+        "?ie=UTF-8" +
+        "&client=tw-ob" +
+        "&tl=" + lang +
+        "&q=" + encodeURIComponent(text);
+
+    const audio = new Audio(url);
+    audio.play();
+}
+
 //
 
 
