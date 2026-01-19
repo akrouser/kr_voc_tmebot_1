@@ -343,26 +343,27 @@ body {
 
 
 .flashcard {
-    width: calc(1vw*50);
+    width: calc(1vw*62);
     height: calc(1vh*30);
-    inset: calc(1vw*12);
+    inset: calc(1vw*9);
     position: absolute;
     transition: transform 0.6s ease, opacity 0.6s ease; /* O'zgarishlarga opacity qo'shildi */
 }
 
 .card {
-    width: calc(1vw*50);
+    width: calc(1vw*60);
     height: calc(1vh*30);
     position: absolute;
     backface-visibility: hidden;
-    border-radius: calc(1vw*4);
+    border-radius: calc(1vw*6);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
+    text-align: center;
     color: white;
     transition: transform 0.6s;
-    border: solid 2px black;
+    border: solid calc(1vw) black;
 }
 
 .front {
