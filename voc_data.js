@@ -4813,69 +4813,7 @@ const data = [
     },
     // end of book
 
-    // books
-    {
-        book: "서울대 한국어 2-B",
-        topics: [
-            { mavzu: "mavzu_", toplam: [
-{ korean: "전화를 걸다", uzbek: "tel qilmoq" },
-{ korean: "전화가 오다", uzbek: "tel kelmoq" },
-{ korean: "전화를 받다", uzbek: "telni olmoq" },
-{ korean: "전화를 바꾸다", uzbek: "telni almashtirmoq, ulab bermoq" },
-{ korean: "통화를 하다", uzbek: "aloqalashmoq" },
-{ korean: "전화를 끊다", uzbek: "telni qo’ymoq" },
-{ korean: "문자를 보내다", uzbek: "smsni jo’natmoq" },
-{ korean: "문자를 받다", uzbek: "smsni olmoq" },
-{ korean: "문자를 지우다", uzbek: "smsni o’chirmoq" },
-{ korean: "대상", uzbek: "maqsad, qatnashuvchilar" },
-{ korean: "장소", uzbek: "joy" },
-{ korean: "기간", uzbek: "muddat" },
-{ korean: "참가비", uzbek: "qatnashish to’lovi" },
-{ korean: "접수", uzbek: "qabul" },
-{ korean: "문의", uzbek: "ma’lumot so’rash" },
-{ korean: "부탁하다", uzbek: "iltimos" },
-{ korean: "공사", uzbek: "qurilish" },
-{ korean: "국립국악원", uzbek: "milliy musiqiy markazi" },
-{ korean: "외국인", uzbek: "chet ellik" },
-{ korean: "을/를 위한", uzbek: "uchun" },
-{ korean: "국악", uzbek: "milliy musiqa" },
-{ korean: "국립극장", uzbek: "xalqaro teatr" },
-{ korean: "김치박물관", uzbek: "kimchi muzeyi" },
-{ korean: "예술의전당", uzbek: "Seul san’at markazi" },
-{ korean: "동양화", uzbek: "sharq rassomchiligi" },
-{ korean: "아프리카", uzbek: "Afrika" },
-{ korean: "전시", uzbek: "ko’rkazma" },
-{ korean: "애니메이션", uzbek: "animatsiya" },
-{ korean: "상영", uzbek: "namoyish" },
-{ korean: "스페인어", uzbek: "ispan tili" },
-{ korean: "남다", uzbek: "qolmoq" },
-{ korean: "술", uzbek: "aroq" },
-{ korean: "잠", uzbek: "uyqu" },
-{ korean: "말씀하다", uzbek: "gapirmoq (hurmat)" },
-{ korean: "무료", uzbek: "tekin" },
-{ korean: "태권도복", uzbek: "taekvondo kiyimi" },
-{ korean: "다도", uzbek: "choy marosimi" },
-{ korean: "악기", uzbek: "cholg’u asbob" },
-{ korean: "경회궁", uzbek: "joy nomi" },
-{ korean: "체험", uzbek: "tajriba" },
-{ korean: "재료비", uzbek: "material to’lovi" },
-{ korean: "퀴즈", uzbek: "savol-javob" },
-{ korean: "프로그램", uzbek: "programma" },
-{ korean: "참가하다", uzbek: "qatnashmoq" },
-{ korean: "한국학", uzbek: "koreys tili yo’nalishi" },
-{ korean: "궁금하다", uzbek: "qiziqmoq" },
-{ korean: "갑자기", uzbek: "to’satdan" },
-{ korean: "상담원", uzbek: "operator" },
-{ korean: "통역하다", uzbek: "og’zaki tarjima qilmoq" },
-{ korean: "치료를 받다", uzbek: "davolanish" },
-{ korean: "통역", uzbek: "og’zaki tarjima" },
-{ korean: "서비스", uzbek: "servis xizmat" },
-{ korean: "정보를 얻다", uzbek: "ma’lumot olmoq" }
-            ] },
-        ]
-    },
-    // end of book
-
+  
     // books
     {
         book: "서울대 한국어 2-B",
